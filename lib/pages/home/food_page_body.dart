@@ -144,11 +144,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                 color: Colors.white38,
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  //image: AssetImage("assets/image/flower.png"  ),
-                                  image: NetworkImage(AppConstants.BASE_URL +
-                                      AppConstants.UPLOAD_URL +
-                                      recommendedProduct
-                                          .recommendedProductList[index].img!),
+                                  image: AssetImage("assets/image/" + recommendedProduct.recommendedProductList[index].img!  ),
+                                  //image: NetworkImage(AppConstants.BASE_URL +
+                                  //    AppConstants.UPLOAD_URL +
+                                  //    recommendedProduct
+                                  //        .recommendedProductList[index].img!),
                                 ),
                               ),
                             ),
@@ -270,7 +270,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/image/" + popularProduct.img!),
+                    image: AssetImage("assets/image/" + popularProduct.img!  ),
                   //image: NetworkImage(AppConstants.BASE_URL +
                     //    AppConstants.UPLOAD_URL +
                     //    popularProduct.img!)
