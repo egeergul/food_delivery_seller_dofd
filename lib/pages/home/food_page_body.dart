@@ -89,7 +89,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           margin: EdgeInsets.only(left: Dimensions.width30),
           child: Row(
             children: [
-              BigText(text: "Recommended"),
+              BigText(text: "All Products"),
               SizedBox(
                 width: Dimensions.width10,
               ),
@@ -106,7 +106,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               Container(
                 margin: const EdgeInsets.only(bottom: 2),
                 child: SmallText(
-                  text: "Food pairing",
+                  text: "",
                 ),
               ),
             ],
