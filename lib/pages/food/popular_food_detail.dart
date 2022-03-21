@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular%20_product_controller.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -24,6 +25,7 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
     //var product = Get.find<PopularProductController>( ).popularProductListHardcoded[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
@@ -161,9 +163,14 @@ class PopularFoodDetail extends StatelessWidget {
                     bottom: Dimensions.height20,
                     right: Dimensions.width20,
                     left: Dimensions.width20),
-                child: BigText(
-                  text: " \$ ${product.price} | Add to cart",
-                  color: Colors.white,
+                child: GestureDetector(
+                  onTap: (){
+                    popularProduct.addItem(product);
+                  },
+                  child: BigText(
+                    text: " \$ ${product.price} | Add to cart",
+                    color: Colors.white,
+                  ),
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius20),
