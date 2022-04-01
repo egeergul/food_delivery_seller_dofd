@@ -17,6 +17,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.mainBackgroundColor,
       body: SingleChildScrollView(
         padding: EdgeInsets.only(left:Dimensions.width20*2, right: Dimensions.width20*2),
         child: SafeArea(
@@ -37,7 +38,7 @@ class _SignUpState extends State<SignUp> {
                       children: [
                         
                         
-                        Image.asset("assets/image/logo.jpg",
+                        Image.asset("assets/image/logo_pink.jpg",
                         height: 150,),
 
                         Text(

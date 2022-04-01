@@ -93,7 +93,7 @@ class PopularProductController extends GetxController {
   int get quantity => _quantity;
 
   int _inCartItems=0;
-  int get inCartItems=>inCartItems+_quantity;
+  int get inCartItems => _inCartItems +_quantity;
 
   bool _isLoaded = false;
 
@@ -123,11 +123,11 @@ class PopularProductController extends GetxController {
   }
 
   int checkQuantity(int quantity) {
-    if (quantity < 0) {
+    if (_inCartItems + quantity < 0) {
       Get.snackbar("Item count", "You can not reduce more!",
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
       return 0;
-    } else if (quantity > 20) {
+    } else if (_inCartItems + quantity > 20) {
       Get.snackbar("Item count", "You can not add more!",
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
       return 20;
@@ -136,23 +136,37 @@ class PopularProductController extends GetxController {
     }
   }
 
-  void initProduct(CartController cart){
+  void initProduct(ProductModel product, CartController cart){
     _quantity = 0;
     _inCartItems = 0;
     _cart = cart;
+    var exists=false;
+    exists= _cart.existsInCart(product);
+
+    if(exists) {
+      _inCartItems=_cart.getQuantity(product);
+
+    }
+    print("quantity in cart is " +  _inCartItems.toString());
 
     //if exists
     // get from storage _inCartItems
   }
 
   void addItem(ProductModel product){
-    if(quantity>0){
+    //if(quantity>0){
       _cart.addItem(product, quantity);
-    }
-    else{
-      Get.snackbar("Item count", "You should at least add an item to the cart",
-      backgroundColor: AppColors.mainColor,
-      colorText: Colors.white);
-    }
+      _quantity = 0;
+      _inCartItems=_cart.getQuantity(product);
+      _cart.items.forEach((key, value) {
+       });
+
+      _cart.items.forEach((key, value) {print("id is " + value.id.toString() + "qnd quantity is " + value.quantity.toString());});
+
+    //}
+    /*else{
+
+
+    }*/
   }
 }

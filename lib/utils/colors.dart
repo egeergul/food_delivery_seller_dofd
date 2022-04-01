@@ -5,7 +5,7 @@ class AppColors{
   //static final Color mainColor = const Color(0xFF89dad0);
 
   static final Color mainColor = const Color(0XFF7851A9);
-  static final Color mainBackgroundColor = const Color(0Xefe6f6);
+  static final Color mainBackgroundColor = const Color(0XFFEFE6F6);
   static final Color iconColor1 = const Color(0xFFffd28d);
   static final Color iconColor2 = const Color(0xFFfcab88);
   static final Color paraColor = const Color(0xFF8f837f);

@@ -23,7 +23,7 @@ class RecommendedFoodDetail extends StatelessWidget {
     var product =
         Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.mainBackgroundColor,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -49,14 +49,14 @@ class RecommendedFoodDetail extends StatelessWidget {
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.mainBackgroundColor,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(Dimensions.radius20),
                       topRight: Radius.circular(Dimensions.radius20),
                     )),
               ),
             ),
-            backgroundColor: AppColors.yellowColor,
+            backgroundColor: AppColors.mainBackgroundColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset( "assets/image/" + product.img!,

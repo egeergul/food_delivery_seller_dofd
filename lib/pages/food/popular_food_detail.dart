@@ -25,10 +25,10 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
+    Get.find<PopularProductController>().initProduct(product,  Get.find<CartController>());
     //var product = Get.find<PopularProductController>( ).popularProductListHardcoded[pageId];
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.mainBackgroundColor,
       body: Stack(
         children: [
           // background image
@@ -141,7 +141,7 @@ class PopularFoodDetail extends StatelessWidget {
                     SizedBox(
                       width: Dimensions.width20 / 2,
                     ),
-                    BigText(text: popularProduct.quantity.toString()),
+                    BigText(text: popularProduct.inCartItems.toString()),
                     SizedBox(
                       width: Dimensions.width20 / 2,
                     ),

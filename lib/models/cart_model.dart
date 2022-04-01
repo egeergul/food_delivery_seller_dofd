@@ -1,4 +1,4 @@
-class CartModel {
+ class CartModel {
   int? id;
   String? name;
   int? price;

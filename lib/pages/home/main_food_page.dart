@@ -21,6 +21,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
     print("Page height is: " + MediaQuery.of(context).size.height.toString());
 
     return Scaffold(
+      backgroundColor: AppColors.mainBackgroundColor,
       body: Column(
         children: [
           Container(
