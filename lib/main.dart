@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/popular%20_product_controller.dart';
+import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/home/food_page_body.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/pages/signup/signup.dart';
 import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/widgets/recommended_food_detail.dart';
+import 'package:food_delivery/pages/food/recommended_food_detail.dart';
 import "package:get/get.dart";
 import 'controllers/recommended_food_controller.dart';
 import 'helper/dependencies.dart' as dep;
@@ -28,8 +29,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home:   SignUp(),
-      //initialRoute: RouteHelper.getInitial() ,
+      home:   MainFoodPage(), //SIGNUP() ÇEVİR
+                //initialRoute: RouteHelper.getInitial() ,
       getPages: RouteHelper.routes ,
     );
   }
