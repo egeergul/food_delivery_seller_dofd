@@ -22,6 +22,7 @@ class CartController extends GetxController {
         return CartModel(
           id: value.id,
           name: product.name,
+          price: product.price,
           img: product.img,
           quantity: value.quantity! + quantity,
           isExist: true,
@@ -37,6 +38,7 @@ class CartController extends GetxController {
           return CartModel(
             id: product.id,
             name: product.name,
+            price: product.price,
             img: product.img,
             quantity: quantity,
             isExist: true,
@@ -56,6 +58,8 @@ class CartController extends GetxController {
           id: product.id,
           name: product.name,
           img: product.img,
+          price: product.price,
+
           quantity: quantity,
           isExist: true,
           time: DateTime.now().toString(),
@@ -92,7 +96,7 @@ class CartController extends GetxController {
 
   }
 
-  List<CartModel> get getItems{
+  List<CartModel> get  getItems{
     return _items.entries.map((e){
       return e.value;
     }).toList();

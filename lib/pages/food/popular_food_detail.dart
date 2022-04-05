@@ -11,6 +11,7 @@ import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../routes/route_helper.dart';
 import '../../utils/colors.dart';
 import '../../widgets/big_text.dart';
 import '../../widgets/icon_and_text_widget.dart';
@@ -60,36 +61,42 @@ class PopularFoodDetail extends StatelessWidget {
                       },
                       child: AppIcon(icon: Icons.arrow_back_ios)),
                   GetBuilder<PopularProductController>(builder: (controller) {
-                    return Stack(
-                      children: [
-                        AppIcon(icon: Icons.shopping_cart_outlined),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                                right: 0,
-                                top: 0,
-                                child: GestureDetector(
-                                  onTap:() {
-                                    print("ON TAP");
-                                    Get.to(() => CartPage());
-                                  },
+                    return GestureDetector(
+                      onTap: () {
+                        if (controller.totalItems >= 1) {
+                          Get.toNamed(RouteHelper.getCartPage());
+                        }
+                      },
+                      child: Stack(
+                        children: [
+                          AppIcon(icon: Icons.shopping_cart_outlined),
+                          controller.totalItems >= 1
+                              ? Positioned(
+                                  right: 0,
+                                  top: 0,
                                   child: AppIcon(
                                     icon: Icons.circle,
                                     size: 20,
                                     iconColor: Colors.transparent,
                                     backgroundColor: AppColors.mainColor,
                                   ),
-                                ),
-                              )
-                            : Container(),
-                        Get.find<PopularProductController>().totalItems >= 1
-                            ? Positioned(
-                          right: 3,
-                          top: 3,
-                          child: BigText(text: Get.find<PopularProductController>().totalItems.toString()
-                          ,size: 12, color: Colors.white,),
-                        )
-                            : Container()
-                      ],
+                                )
+                              : Container(),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 3,
+                                  top: 3,
+                                  child: BigText(
+                                    text: Get.find<PopularProductController>()
+                                        .totalItems
+                                        .toString(),
+                                    size: 12,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : Container()
+                        ],
+                      ),
                     );
                   })
                 ],
@@ -192,7 +199,7 @@ class PopularFoodDetail extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   popularProduct.addItem(product);
                 },
                 child: Container(
@@ -201,11 +208,10 @@ class PopularFoodDetail extends StatelessWidget {
                       bottom: Dimensions.height20,
                       right: Dimensions.width20,
                       left: Dimensions.width20),
-
-                    child: BigText(
-                      text: " \$ ${product.price} | Add to cart",
-                      color: Colors.white,
-                    ),
+                  child: BigText(
+                    text: " \$ ${product.price} | Add to cart",
+                    color: Colors.white,
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor,

@@ -6,14 +6,19 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
+import '../pages/cart/cart_page.dart';
+
 class RouteHelper {
   static const String initial = "/";
   static const String popularFood = "/popular-food";
   static const String recommendedFood = "/recommended-food";
+  static const String cartPage = "/cart-page";
 
   static String getInitial() => "$initial ";
 
   static String getPopularFood(int pageId) => "$popularFood?pageId=$pageId";
+
+  static String getCartPage() => "$cartPage";
 
   static String getRecommendedFood(int pageId) =>
       "$recommendedFood?pageId=$pageId ";
@@ -35,5 +40,14 @@ class RouteHelper {
         return RecommendedFoodDetail(pageId: int.parse(pageId!));
       },
     ),
+    GetPage(
+        name: cartPage,
+        page: () {
+          return CartPage();
+        },
+        //transition: Trasition.fadeIn,
+        )
   ];
 }
+
+class Trasition {}
