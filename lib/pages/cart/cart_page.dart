@@ -90,7 +90,13 @@ class CartPage extends StatelessWidget {
                                       Get.find<RecommendedProductController>()
                                           .recommendedProductList 
                                           .indexOf(_cartList[index].product!);
-                                      Get.toNamed(RouteHelper.getRecommendedFood(recommendedIndex, "cartpage"));
+                                      if(recommendedIndex<0){
+                                        Get.snackbar("History Product", "Product review is not available for history products",
+                                            backgroundColor: AppColors.mainColor,
+                                            colorText: Colors.white);
+                                      }else{
+                                        Get.toNamed(RouteHelper.getRecommendedFood(recommendedIndex, "cartpage"));
+                                      }
                                     }
                                   },
                                   child: Container(
@@ -132,7 +138,7 @@ class CartPage extends StatelessWidget {
                                           children: [
                                             BigText(
                                               text:
-                                                  " ${(cartController.getItems[index].price == null ? 0 : cartController.getItems[index].price! * cartController.getItems[index].quantity!).toString()}",
+                                                  "PRICE ${(cartController.getItems[index].price.toString())}",
                                               color: Colors.redAccent,
                                             ),
                                             Container(
@@ -251,6 +257,7 @@ class CartPage extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   // popularProduct.addItem(product);
+                  cartController.addToHistory();
                 },
                 child: Container(
                   padding: EdgeInsets.only(

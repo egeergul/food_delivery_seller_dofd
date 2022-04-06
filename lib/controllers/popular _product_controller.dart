@@ -153,7 +153,7 @@ class PopularProductController extends GetxController {
       _inCartItems=_cart.getQuantity(product);
 
     }
-    print("quantity in cart is " +  _inCartItems.toString());
+    //print("quantity in cart is " +  _inCartItems.toString());
 
     //if exists
     // get from storage _inCartItems
