@@ -18,6 +18,7 @@ class CartRepo {
   void addToCartList(List<CartModel> cartList) {
     //sharedPreferences.remove(AppConstants.CART_LIST);//DEBUGGING PURPOSES
     //sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);//DEBUGGING PURPOSES
+    //return;
     var time = DateTime.now().toString();
     cart = [];
     /*cartList.forEach((element) {
