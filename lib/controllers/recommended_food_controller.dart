@@ -133,8 +133,8 @@ class RecommendedProductController extends GetxController {
     if (response.statusCode == 200) {
       print("got products recommended ");
       _recommendedProductList = [];
-      //_recommendedProductList  .addAll(Product.fromJson(response.body).products);
-      _recommendedProductList  .addAll(Product.fromJson(data).products);
+      _recommendedProductList  .addAll(Product.fromJson(response.body).products);
+      //_recommendedProductList  .addAll(Product.fromJson(data).products);
 
       _isLoaded = true;
 

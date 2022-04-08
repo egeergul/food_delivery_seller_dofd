@@ -17,6 +17,8 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:intl/intl.dart';
 
+import '../../utils/app_constants.dart';
+
 class CartHistory extends StatelessWidget {
   const CartHistory({Key? key}) : super(key: key);
 
@@ -92,7 +94,7 @@ class CartHistory extends StatelessWidget {
           GetBuilder<CartController>(builder: (_cartController) {
             return _cartController
                 .getCartHistoryList()
-                .length > 0 ? 
+                .length > 0 ?
             Expanded(
                 child: Container(
                     margin: EdgeInsets.only(
@@ -141,12 +143,17 @@ class CartHistory extends StatelessWidget {
                                                             2),
                                                     image: DecorationImage(
                                                         fit: BoxFit.cover,
-                                                        image: AssetImage(
-                                                            "assets/image/" +
-                                                                getCartHistoryList[
-                                                                listCounter -
-                                                                    1]
-                                                                    .img!) //hardcoded image
+
+                                                        image: NetworkImage(AppConstants.BASE_URL +
+                                                            AppConstants.UPLOAD_URL + getCartHistoryList[listCounter - 1].img! ),
+
+
+                                                      //  image: AssetImage(
+                                                        //    "assets/image/" +
+                                                          //      getCartHistoryList[
+                                                            //    listCounter -
+                                                              //      1]
+                                                                //    .img!) //hardcoded image
                                                     )),
                                               ) : Container();
                                             }),
@@ -224,7 +231,7 @@ class CartHistory extends StatelessWidget {
                             )
                         ],
                       ),
-                    ))) : 
+                    ))) :
             Container(
                     child: const Center(child: NoDataPage(text: "You didn't buy anything so far!", imgPath: "assets/image/empty_box.png",)),
                     height: MediaQuery.of(context).size.height/1.5,

@@ -12,7 +12,6 @@ import "package:get/get.dart";
 import 'controllers/recommended_food_controller.dart';
 import 'helper/dependencies.dart' as dep;
 
-// ege branch için bir şey deniyor
 void main() async   {
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();

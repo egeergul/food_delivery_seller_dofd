@@ -14,6 +14,8 @@ import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
+import '../../utils/app_constants.dart';
+
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
@@ -111,8 +113,11 @@ class CartPage extends StatelessWidget {
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
                                               fit: BoxFit.cover,
-                                              image: AssetImage(
-                                                  "assets/image/${cartController.getItems[index].img}")),
+                                              image: NetworkImage(AppConstants.BASE_URL +
+                                                  AppConstants.UPLOAD_URL +
+                                                  cartController.getItems[index].img!)),
+                                             // image: AssetImage(
+                                               //   "assets/image/${cartController.getItems[index].img}")),
                                           borderRadius: BorderRadius.circular(
                                               Dimensions.radius20),
                                           color: Colors.white),
