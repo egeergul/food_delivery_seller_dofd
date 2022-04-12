@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/base/show_custom_snackbar.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_text_field.dart';
@@ -22,6 +23,37 @@ class SignUpPage extends StatelessWidget {
       "f.png",
       "g.png"
     ];
+
+    void _registeration(){
+      String name = nameController.text.trim();
+      String phone = phoneController.text.trim();
+      String password = passwordController.text.trim();
+      String email = emailController.text.trim();
+
+      if(name.isEmpty){
+        showCustomSnackBar("Type in your name!",title: "Name");
+      } else if( phone.isEmpty){
+        showCustomSnackBar("Type in your phone number!",title: "Phone");
+      } else if (email.isEmpty) {
+        showCustomSnackBar("Type in your email address!",title: "Email");
+
+      } else if (!GetUtils.isEmail(email)){
+        showCustomSnackBar("Type in a valid email address!",title: "Not valid");
+
+      } else if (password.isEmpty) {
+        showCustomSnackBar("Type in your password!",title: "Password");
+
+      } else if ( password.length < 6) {
+        showCustomSnackBar("Your password needs to be longer than 6 characters!",title: "Weak password");
+
+      } else {
+        showCustomSnackBar("Ok!",title: "PERF");
+
+
+      }
+
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -80,18 +112,23 @@ class SignUpPage extends StatelessWidget {
             ),
 
             // Sign up button
-            Container(
-              width: Dimensions.screenWidth / 2,
-              height: Dimensions.screenHeight / 13,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius30),
-                color: AppColors.mainColor,
-              ),
-              child: Center(
-                child: BigText(
-                  color: Colors.white,
-                  text: "Sign Up",
-                  size: Dimensions.font20 + Dimensions.font20 / 2,
+            GestureDetector(
+              onTap: (){
+                _registeration();
+              },
+              child: Container(
+                width: Dimensions.screenWidth / 2,
+                height: Dimensions.screenHeight / 13,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                  color: AppColors.mainColor,
+                ),
+                child: Center(
+                  child: BigText(
+                    color: Colors.white,
+                    text: "Sign Up",
+                    size: Dimensions.font20 + Dimensions.font20 / 2,
+                  ),
                 ),
               ),
             ),
@@ -129,5 +166,7 @@ class SignUpPage extends StatelessWidget {
         ),
       ),
     );
+
+
   }
 }

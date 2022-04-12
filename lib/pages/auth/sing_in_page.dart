@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/pages/auth/sign_up_page.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_text_field.dart';
@@ -90,13 +91,16 @@ class SignInPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(Dimensions.radius30),
                 color: AppColors.mainColor,
               ),
-              child: Center(
-                child: BigText(
-                  color: Colors.white,
-                  text: "Sign In",
-                  size: Dimensions.font20 + Dimensions.font20 / 2,
+
+
+                child: Center(
+                  child: BigText(
+                    color: Colors.white,
+                    text: "Sign In",
+                    size: Dimensions.font20 + Dimensions.font20 / 2,
+                  ),
                 ),
-              ),
+
             ),
             SizedBox(
               height: Dimensions.height10,
