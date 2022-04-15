@@ -72,6 +72,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
         ))
       ],
     ),
+
         onRefresh: _loadResources);
   }
 }

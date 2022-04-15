@@ -57,6 +57,7 @@ class SignUpPage extends StatelessWidget {
             print("Success registeration");
 
           } else {
+            print("else girdi");
             showCustomSnackBar(status.message);
           }
         });

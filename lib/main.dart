@@ -31,12 +31,12 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          //home: SplashScreen(),
-           home: SignInPage(),
+          home: SplashScreen(),
+           //home: SignInPage(),
 
-          //initialRoute:   RouteHelper.getSplashPage(),  //SIGNUP() ÇEVİR
+          initialRoute:   RouteHelper.getSplashPage(),  //SIGNUP() ÇEVİR
           //initialRoute: RouteHelper.getInitial() ,
-          //getPages: RouteHelper.routes ,
+          getPages: RouteHelper.routes ,
         );
 
       });
