@@ -11,14 +11,14 @@ class ApiClient extends GetConnect implements GetxService {
     token = AppConstants.TOKEN;
     timeout = Duration(seconds: 30);
     _mainHeaders = {
-      "Content-type": "application.json; charset=UTF -8",
-      "Authorization": "Bearer $token",
+      'Content-type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $token',
     };
   }
   void updateHeader(String token ){
     _mainHeaders = {
-      "Content-type": "application.json; charset=UTF -8",
-      "Authorization": "Bearer $token",
+      'Content-type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $token',
     };
   }
 
@@ -33,9 +33,8 @@ class ApiClient extends GetConnect implements GetxService {
 
   Future<Response> postData(String uri, dynamic body) async {
     print(body.toString());
-    print("egeee");
     try{
-      Response response = await post(uri, body, headers: _mainHeaders);
+      Response response = await post(uri, body ,headers: _mainHeaders);
       print(response.body.toString());
       return response;
     } catch(e) {
