@@ -38,7 +38,7 @@ class SignInPage extends StatelessWidget {
       } else {
         authController.login(email, password).then((status) {
           if (status.isSuccess) {
-            Get.toNamed(RouteHelper.getCartPage());
+            Get.toNamed(RouteHelper.getInitial());
           } else {
             print("else girdi");
             showCustomSnackBar(status.message);
