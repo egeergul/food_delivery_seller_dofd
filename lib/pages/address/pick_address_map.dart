@@ -116,6 +116,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                     onPressed: locationController.loading?null:(){
                       if(locationController.pickPosition.latitude!=0  && locationController.pickPlacemark.name!= null) {
                         if(widget.fromAddress){
+
                           if(widget.googleMapController!= null) {
                             print("Now you can click on this");
                           }
