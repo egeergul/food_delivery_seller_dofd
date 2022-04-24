@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/base/custom_loader.dart';
 import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:food_delivery/controllers/location_controller.dart';
 import 'package:food_delivery/controllers/user_controller.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
@@ -69,7 +70,7 @@ class AccountPage extends StatelessWidget {
                                       iconSize: Dimensions.height10 * 5 / 2,
                                     ),
                                     bigText: BigText(
-                                      text: userController.userModel.name,
+                                      text: userController.userModel!.name,
                                     ),
                                   ),
                                   SizedBox(
@@ -85,7 +86,7 @@ class AccountPage extends StatelessWidget {
                                       iconSize: Dimensions.height10 * 5 / 2,
                                     ),
                                     bigText: BigText(
-                                      text: userController.userModel.phone,
+                                      text: userController.userModel!.phone,
                                     ),
                                   ),
                                   SizedBox(
@@ -101,25 +102,55 @@ class AccountPage extends StatelessWidget {
                                       iconSize: Dimensions.height10 * 5 / 2,
                                     ),
                                     bigText: BigText(
-                                      text: userController.userModel.email,
+                                      text: userController.userModel!.email,
                                     ),
                                   ),
                                   SizedBox(
                                     height: Dimensions.height20,
                                   ),
                                   //address
-                                  AccountWidget(
-                                    appIcon: AppIcon(
-                                      icon: Icons.location_on,
-                                      backgroundColor: AppColors.mainColor,
-                                      iconColor: Colors.white,
-                                      size: Dimensions.height10 * 5,
-                                      iconSize: Dimensions.height10 * 5 / 2,
-                                    ),
-                                    bigText: BigText(
-                                      text: "Fill in your address",
-                                    ),
-                                  ),
+                                  GetBuilder<LocationController>(
+                                      builder: (locationController) {
+                                    if (_userLoggedIn &&
+                                        locationController
+                                            .addressList.isEmpty) {
+                                      return GestureDetector(
+                                        onTap: (){
+                                          Get.offNamed(RouteHelper.getAddressPage());
+                                        },
+                                        child: AccountWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.location_on,
+                                            backgroundColor: AppColors.mainColor,
+                                            iconColor: Colors.white,
+                                            size: Dimensions.height10 * 5,
+                                            iconSize: Dimensions.height10 * 5 / 2,
+                                          ),
+                                          bigText: BigText(
+                                            text: "Fill in your address",
+                                          ),
+                                        ),
+                                      );
+                                    }else{
+                                      return GestureDetector(
+                                        onTap: (){
+                                          Get.offNamed(RouteHelper.getAddressPage());
+                                        },
+                                        child: AccountWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.location_on,
+                                            backgroundColor: AppColors.mainColor,
+                                            iconColor: Colors.white,
+                                            size: Dimensions.height10 * 5,
+                                            iconSize: Dimensions.height10 * 5 / 2,
+                                          ),
+                                          bigText: BigText(
+                                            text: "Your address",
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  }),
                                   SizedBox(
                                     height: Dimensions.height20,
                                   ),
@@ -148,11 +179,14 @@ class AccountPage extends StatelessWidget {
                                         Get.find<CartController>().clear();
                                         Get.find<CartController>()
                                             .clearCartHistory();
+                                        Get.find<LocationController>().clearAddressList();
                                         print("inside if");
 
                                         Get.offNamed(
                                             RouteHelper.getSignInPage());
                                       } else {
+                                        Get.offNamed(
+                                            RouteHelper.getSignInPage());
                                         print("you logged out");
                                       }
                                     },
@@ -179,40 +213,47 @@ class AccountPage extends StatelessWidget {
                   : CustomLoader())
               : Container(
                   child: Center(
-                    child: Container(child:Column(
+                    child: Container(
+                        child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           width: double.maxFinite,
-                          height: Dimensions.height20*8,
-                          margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
+                          height: Dimensions.height20 * 8,
+                          margin: EdgeInsets.only(
+                              left: Dimensions.width20,
+                              right: Dimensions.width20),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(Dimensions.radius20),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                  "assets/image/signintocontinue.png"
-                              )
-                            )
-                          ),
+                              borderRadius:
+                                  BorderRadius.circular(Dimensions.radius20),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      "assets/image/signintocontinue.png"))),
                         ),
                         GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             Get.toNamed(RouteHelper.getSignInPage());
                           },
                           child: Container(
                             width: double.maxFinite,
-                            height: Dimensions.height20*5,
-                            margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
+                            height: Dimensions.height20 * 5,
+                            margin: EdgeInsets.only(
+                                left: Dimensions.width20,
+                                right: Dimensions.width20),
                             decoration: BoxDecoration(
                               color: AppColors.mainColor,
-                                borderRadius: BorderRadius.circular(Dimensions.radius20),
-
+                              borderRadius:
+                                  BorderRadius.circular(Dimensions.radius20),
                             ),
-                            child: Center(child: BigText(text: "Sign in",color: Colors.white, size: Dimensions.font20,)),
+                            child: Center(
+                                child: BigText(
+                              text: "Sign in",
+                              color: Colors.white,
+                              size: Dimensions.font20,
+                            )),
                           ),
                         )
-
                       ],
                     )),
                   ),
