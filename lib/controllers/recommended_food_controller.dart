@@ -1,3 +1,4 @@
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
 import '../data/repository/recommended_food_repo.dart';
 import '../models/products_model.dart';
@@ -29,6 +30,7 @@ class RecommendedProductController extends GetxController {
 
       update();
     } else {
+      print("App base url is " + AppConstants.BASE_URL );
       print("could not ge t products recommended ");
     }
   }
