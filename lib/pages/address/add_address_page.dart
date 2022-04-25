@@ -29,7 +29,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
   final TextEditingController _contactPersonNumber = TextEditingController();
   late bool _isLogged;
   CameraPosition _cameraPosition =
-      CameraPosition(target: LatLng(45.51563, -122.677433), zoom: 17);
+      const CameraPosition(target: LatLng(45.51563, -122.677433), zoom: 17);
   late LatLng _initialPosition = LatLng(45.51563, -122.677433);
 
   @override

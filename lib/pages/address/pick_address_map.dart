@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/base/custom_button.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:get/get.dart';
@@ -41,7 +42,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
         _initialPosition = LatLng(
             double.parse(Get.find<LocationController>().getAddress["latitude"]),
             double.parse(
-                Get.find<LocationController>().getAddress["long itude"]));
+                Get.find<LocationController>().getAddress["longitude"]));
         _cameraPosition = CameraPosition(target: _initialPosition, zoom: 17);
       }
     }
@@ -88,17 +89,21 @@ class _PickAddressMapState extends State<PickAddressMap> {
                   padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
                   height: 50,
                   decoration: BoxDecoration(
-                    color: AppColors.mainColor,
-                    borderRadius: BorderRadius.circular(Dimensions.radius30/3 )
-                  ),
+                      color: AppColors.mainColor,
+                      borderRadius:
+                          BorderRadius.circular(Dimensions.radius30 / 3)),
                   child: Row(
                     children: [
-                      Icon(Icons.location_on, size: 25, color: AppColors.yellowColor,),
-                      Expanded(child: Text(
-                        '${locationController.pickPlacemark.name??''}',
+                      Icon(
+                        Icons.location_on,
+                        size: 25,
+                        color: AppColors.yellowColor,
+                      ),
+                      Expanded(
+                          child: Text(
+                        '${locationController.pickPlacemark.name ?? ''}',
                         style: TextStyle(
                           color: Colors.white,
-
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -108,23 +113,49 @@ class _PickAddressMapState extends State<PickAddressMap> {
                 ),
               ),
               Positioned(
-                  bottom: 200,
+                  bottom: 80,
                   left: Dimensions.width20,
-                  right: Dimensions.width20 ,
-                  child:  CustomButton(
-                    buttonText:  'Pick Address',
-                    onPressed: locationController.loading?null:(){
-                      if(locationController.pickPosition.latitude!=0  && locationController.pickPlacemark.name!= null) {
-                        if(widget.fromAddress){
-
-                          if(widget.googleMapController!= null) {
-                            print("Now you can click on this");
-                          }
-                        }
-                      }
-                    },
-                  )
-              )
+                  right: Dimensions.width20,
+                  child: locationController.isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : CustomButton(
+                          buttonText: locationController.inZone
+                              ? widget.fromAddress
+                                  ? 'Pick Address'
+                                  : 'Pick Location'
+                              : 'Service is not available in your area',
+                          onPressed: (locationController.loading || locationController.buttonDisabled)
+                              ? null
+                              : () {
+                                  if (locationController
+                                              .pickPosition.latitude !=
+                                          0 &&
+                                      locationController.pickPlacemark.name !=
+                                          null) {
+                                    if (widget.fromAddress) {
+                                      if (widget.googleMapController != null) {
+                                        print("Now you can click on this");
+                                        widget.googleMapController!.moveCamera(
+                                            CameraUpdate.newCameraPosition(
+                                                CameraPosition(
+                                                    target: LatLng(
+                                                        locationController
+                                                            .pickPosition
+                                                            .latitude,
+                                                        locationController
+                                                            .pickPosition
+                                                            .longitude))));
+                                        locationController.setAddressData();
+                                      }
+                                      //Get.back() creates update problem
+                                      //list, a value
+                                      Get.toNamed(RouteHelper.getAddressPage());
+                                    }
+                                  }
+                                },
+                        ))
             ],
           ),
         ),
