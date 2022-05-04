@@ -15,7 +15,7 @@ import '../../widgets/big_text.dart';
 import '../../widgets/icon_and_text_widget.dart';
 import '../../widgets/small_text.dart';
 import '../home/food_page_body.dart';
-import 'all_orders_body.dart';
+
 
 class AllOrders extends StatefulWidget {
   const AllOrders({Key? key}) : super(key: key);
@@ -60,12 +60,113 @@ class _AllOrdersState extends State<AllOrders> {
             ),
             Expanded(
                 child: SingleChildScrollView(
-                  child: AllOrdersBody(),
+                  child:  Column(
+                    children: [
+                      // recommended food
+                      GetBuilder<AllOrdersController>(builder: (allOrders) {
+                        return allOrders.isLoaded
+                            ? ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: allOrders.allOrdersList.length,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(RouteHelper.getOrder(index , "home"));
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                      left: Dimensions.width20,
+                                      right: Dimensions.width20,
+                                      bottom: Dimensions.width10),
+
+                                  child: Container(
+                                      height: Dimensions.listViewTextContSize2,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(Dimensions.radius20),
+                                        ),
+                                        color: Colors.white,
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            left: Dimensions.width10 * 2,
+                                            right: Dimensions.width10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                BigText(
+                                                    text: allOrders
+                                                        .allOrdersList[index]
+                                                        .delivered ==
+                                                        null
+                                                        ? "Not delivered"
+                                                        : "Delivered"),
+                                                SizedBox(
+                                                  width: Dimensions.width10,
+                                                ),
+                                                BigText(
+                                                    overflow: TextOverflow.ellipsis,
+                                                    size: Dimensions.font16,
+                                                    text: formatDate(allOrders
+                                                        .allOrdersList[index]
+                                                        .createdAt
+                                                        .toString())),
+                                              ],
+                                            ),
+
+                                            SizedBox(
+                                              height: Dimensions.height10,
+                                            ),
+
+                                            // Contact name
+                                            SmallText(
+                                                text: allOrders
+                                                    .allOrdersList[index]
+                                                    .deliveryAddress!
+                                                    .contactPersonName!
+                                                    .toString()),
+                                            //contact address
+                                            SmallText(
+                                                text: allOrders
+                                                    .allOrdersList[index]
+                                                    .deliveryAddress!
+                                                    .contactPersonNumber!
+                                                    .toString()),
+                                            //address
+                                            SmallText(
+                                                text: allOrders.allOrdersList[index]
+                                                    .deliveryAddress!.address!
+                                                    .toString()),
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                              );
+                            })
+                            : CircularProgressIndicator(
+                          color: AppColors.mainColor,
+                        );
+                      }),
+                    ],
+                  ),
             ))
           ],
         ),
         onRefresh: _loadResources);
   }
 
-
+  String formatDate(String date) {
+    String formattedDate = "";
+    if (date != null){
+      formattedDate = DateFormat( 'kk:mm dd/MM/yyyy').format(DateTime.parse(date));
+    }
+    return formattedDate;
+  }
 }

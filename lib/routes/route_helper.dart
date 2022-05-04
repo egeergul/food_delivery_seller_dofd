@@ -12,12 +12,14 @@ import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
 import '../pages/cart/cart_page.dart';
 import '../pages/home/home_page.dart';
+import '../pages/order/order_detail.dart';
 
 class RouteHelper {
   static const String initial = "/";
   static const String splashPage = "/splash-page";
   static const String popularFood = "/popular-food";
   static const String recommendedFood = "/recommended-food";
+  static const String orderPage = "/order-page";
   static const String cartPage = "/cart-page";
   static const String signIn = "/sign-in";
   static const String addAddress ="/add-address";
@@ -33,6 +35,8 @@ class RouteHelper {
   static String getPickAddressPage() => "$pickAddressMap";
   static String getRecommendedFood(int pageId, String page) =>
       "$recommendedFood?pageId=$pageId&page=$page";
+  static String getOrder(int pageId, String page) =>
+      "$orderPage?pageId=$pageId&page=$page";
 
   static List<GetPage> routes = [
     GetPage(name: pickAddressMap, page: (){
@@ -62,6 +66,15 @@ class RouteHelper {
         return RecommendedFoodDetail(pageId: int.parse(pageId!), page: page!);
       },
     ),
+    GetPage(
+      name: orderPage,
+      page: () {
+        var pageId = Get.parameters["pageId"];
+        var page = Get.parameters["page"];
+        return OrderDetail(pageId: int.parse(pageId!), page: page!);
+      },
+    ),
+
     GetPage(
         name: cartPage,
         page: () {
