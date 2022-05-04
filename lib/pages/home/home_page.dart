@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/pages/account/account_page.dart';
+import 'package:food_delivery/pages/auth/sign_up_page.dart';
 import 'package:food_delivery/pages/cart/cart_history.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/utils/colors.dart';
+
+import '../auth/sing_in_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,9 +19,10 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List pages =[
     MainFoodPage(),
-    Container(child: Center(child: Text("Next Page"))),
+    Container(child: Text("history page"),),
+    //SignInPage(),
     CartHistory(),
-    Container(child: Center(child: Text("Next 3 Page"))),
+    AccountPage( ),
   ];
 
   void onTapNav(int index) {

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/base/no_data_page.dart';
+import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:food_delivery/controllers/location_controller.dart';
 import 'package:food_delivery/controllers/popular%20_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_food_controller.dart';
 import 'package:food_delivery/pages/food/popular_food_detail.dart';
@@ -13,6 +15,8 @@ import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
+
+import '../../utils/app_constants.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -111,8 +115,11 @@ class CartPage extends StatelessWidget {
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
                                               fit: BoxFit.cover,
-                                              image: AssetImage(
-                                                  "assets/image/${cartController.getItems[index].img}")),
+                                              image: NetworkImage(AppConstants.BASE_URL +
+                                                  AppConstants.UPLOAD_URL +
+                                                  cartController.getItems[index].img!)),
+                                             // image: AssetImage(
+                                               //   "assets/image/${cartController.getItems[index].img}")),
                                           borderRadius: BorderRadius.circular(
                                               Dimensions.radius20),
                                           color: Colors.white),
@@ -262,7 +269,20 @@ class CartPage extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   // popularProduct.addItem(product);
-                  cartController.addToHistory();
+                  if(Get.find<AuthController>().userLoggedIn()){
+                    //cartController.addToHistory();//BU TUTORIALDAN SILINMIŞ MII????
+                    if(Get.find<LocationController>().addressList.isEmpty){
+                      print("ADDRESS PAGE E GIDIYORUMM" + Get.find<LocationController>().addressList.isEmpty.toString());
+                      Get.toNamed(RouteHelper.getAddressPage());
+                    }else{
+                      print("HERARSDADASDSAAAAAAAAAAAAAAAAAAA");
+                      Get.offNamed(RouteHelper.getInitial());
+                    }
+                    print("tapped");
+                  }
+                  else{
+                    Get.toNamed(RouteHelper.getSignInPage());
+                  }
                 },
                 child: Container(
                   padding: EdgeInsets.only(
