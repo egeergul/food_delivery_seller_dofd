@@ -8,8 +8,6 @@ class AllOrdersRepo extends GetxService {
   AllOrdersRepo({required this.apiClient });
 
   Future<Response> getAllOrdersList()  async{
-
     return await  apiClient.getData( AppConstants.ALL_ORDERS_URI);
-
   }
 }

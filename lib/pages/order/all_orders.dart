@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../controllers/all_orders_controller.dart';
 import '../../controllers/popular _product_controller.dart';
 import '../../controllers/recommended_food_controller.dart';
 import '../../routes/route_helper.dart';
@@ -24,8 +25,7 @@ class AllOrders extends StatefulWidget {
 class _AllOrdersState extends State<AllOrders> {
 
   Future <void> _loadResources() async {
-    await Get.find<PopularProductController>().getPopularProductList();
-    await Get.find<RecommendedProductController>().getRecommendedProductList();
+    await Get.find<AllOrdersController>().getAllOrdersList();
   }
 
 
@@ -60,16 +60,16 @@ class _AllOrdersState extends State<AllOrders> {
               child: Column(
                 children: [
                   // recommended food
-                  GetBuilder<RecommendedProductController>(builder: (recommendedProduct) {
-                    return recommendedProduct.isLoaded
+                  GetBuilder<AllOrdersController>(builder: (allOrders) {
+                    return allOrders.isLoaded
                         ? ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: recommendedProduct.recommendedProductList.length,
+                        itemCount: allOrders.allOrdersList.length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
-                              Get.toNamed(RouteHelper.getRecommendedFood(index , "home"));
+                              //Get.toNamed(RouteHelper.getRecommendedFood(index , "home"));
                             },
                             child: Container(
                               margin: EdgeInsets.only(
@@ -86,14 +86,6 @@ class _AllOrdersState extends State<AllOrders> {
                                       borderRadius:
                                       BorderRadius.circular(Dimensions.radius20),
                                       color: Colors.white38,
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        //image: AssetImage("assets/image/" + recommendedProduct.recommendedProductList[index].img!  ),
-                                        image: NetworkImage(AppConstants.BASE_URL +
-                                            AppConstants.UPLOAD_URL +
-                                            recommendedProduct
-                                                .recommendedProductList[index].img!),
-                                      ),
                                     ),
                                   ),
 
@@ -121,9 +113,9 @@ class _AllOrdersState extends State<AllOrders> {
                                             MainAxisAlignment.center,
                                             children: [
                                               BigText(
-                                                text: recommendedProduct
-                                                    .recommendedProductList[index]
-                                                    .name!,
+                                                text: allOrders
+                                                    .allOrdersList[index]
+                                                    .orderAmount!.toString(),
                                               ),
                                               SizedBox(
                                                 height: Dimensions.height10,
