@@ -59,14 +59,14 @@ class AllOrdersController extends GetxController {
     return responseModel;
   }*/
 
-  Future<ResponseModel>  markAsDelivered (DateTime date)  async{
+  Future<ResponseModel>  markAsDelivered (String orderId, DateTime date)  async{
 
     _isLoading = true;
     update();
 
     print("date is " + date.toString());
 
-    Response response =  await allOrdersRepo.markAsDelivered ( date);
+    Response response =  await allOrdersRepo.markAsDelivered ( orderId, date);
     ResponseModel responseModel;
     if(response.statusCode == 200) {
       responseModel = ResponseModel(true, response.body);

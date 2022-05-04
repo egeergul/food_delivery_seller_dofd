@@ -33,7 +33,7 @@ class OrderDetail extends StatelessWidget {
 
     void _markAsDelivered(AllOrdersController ordersController) {
 
-      ordersController.markAsDelivered(DateTime.now()).then((status){
+      ordersController.markAsDelivered( product.id.toString(),DateTime.now()).then((status){
         if (status.isSuccess) {
           Get.toNamed(RouteHelper.getInitial());
         } else {

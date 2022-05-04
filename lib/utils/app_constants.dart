@@ -8,6 +8,7 @@ class AppConstants {
   static const String UPLOAD_URL = "/uploads/";
 
   static const String ALL_ORDERS_URI = "/api/v1/orders/all";
+  static const String ALL_ORDERS_UPDATE = "/api/v1/orders/update";
 
   // user and auth endpoints
   static const String REGISTERATION_URI = "/api/v1/auth/register";
