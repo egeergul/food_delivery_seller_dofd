@@ -133,7 +133,6 @@ class OrderModel {
   Map<String, dynamic> toJson(){
     return {
       'id' : this.id,
-
     };
   }
 

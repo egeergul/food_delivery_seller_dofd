@@ -6,6 +6,7 @@ import 'package:food_delivery/widgets/big_text.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../controllers/all_orders_controller.dart';
 import '../../controllers/popular _product_controller.dart';
 import '../../controllers/recommended_food_controller.dart';
 import 'food_page_body.dart';
@@ -22,6 +23,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
   Future <void> _loadResources() async {
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductController>().getRecommendedProductList();
+    await Get.find<AllOrdersController>().getAllOrdersList();
   }
 
   @override

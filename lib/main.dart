@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/all_orders_controller.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular%20_product_controller.dart';
 import 'package:food_delivery/pages/auth/sign_up_page.dart';
@@ -29,17 +30,19 @@ class MyApp extends StatelessWidget {
     Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_){
       return GetBuilder<RecommendedProductController>(builder: (_){
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Seller Panel',
+       return GetBuilder<AllOrdersController>(builder: (_){
+         return GetMaterialApp(
+           debugShowCheckedModeBanner: false,
+           title: 'Seller Panel',
 
-          initialRoute:   RouteHelper.getSplashPage(),
-          getPages: RouteHelper.routes ,
-          theme: ThemeData(
-            primaryColor: AppColors.mainColor,
-            fontFamily: 'Lato '
-          ),
-        );
+           initialRoute:   RouteHelper.getSplashPage(),
+           getPages: RouteHelper.routes ,
+           theme: ThemeData(
+               primaryColor: AppColors.mainColor,
+               fontFamily: 'Lato '
+           ),
+         );
+       });
 
       });
     });
