@@ -36,8 +36,8 @@ class ApiClient extends GetConnect implements GetxService {
       return Response(statusCode: 1, statusText: e.toString());
     }
   }
+
   Future<Response> postData(String uri, dynamic body) async {
-    print(body.toString());
     try{
       Response response = await post(uri, body ,headers: _mainHeaders);
       print(response.body.toString());
@@ -47,4 +47,19 @@ class ApiClient extends GetConnect implements GetxService {
       return Response(statusCode: 1, statusText:  e.toString());
     }
   }
+
+  Future<Response> patchData(String uri, dynamic body) async {
+    try{
+      Response response = await patch(uri, body ,headers: _mainHeaders);
+      print(response.body.toString());
+      return response;
+    } catch(e) {
+      print(e.toString());
+      return Response(statusCode: 1, statusText:  e.toString());
+    }
+    return Response(statusCode: 1, statusText:  "e");
+
+
+  }
+
 }

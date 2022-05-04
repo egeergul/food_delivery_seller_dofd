@@ -10,4 +10,10 @@ class AllOrdersRepo extends GetxService {
   Future<Response> getAllOrdersList()  async{
     return await  apiClient.getData( AppConstants.ALL_ORDERS_URI);
   }
+
+
+  Future<Response> markAsDelivered( DateTime date) async {
+    //TODO
+    return await  apiClient.postData(AppConstants.LOGIN_URI, {"delivered": date});
+  }
 }
