@@ -31,12 +31,9 @@ class MyApp extends StatelessWidget {
       return GetBuilder<RecommendedProductController>(builder: (_){
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          //home: SplashScreen(),
-          //home: SignInPage(),
+          title: 'Seller Panel',
 
-          initialRoute:   RouteHelper.getSplashPage(),  //SIGNUP() ÇEVİR
-          //initialRoute: RouteHelper.getInitial() ,
+          initialRoute:   RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes ,
           theme: ThemeData(
             primaryColor: AppColors.mainColor,
