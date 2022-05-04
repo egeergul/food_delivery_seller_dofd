@@ -27,8 +27,6 @@ class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
 
-    print("Page height is: " + MediaQuery.of(context).size.height.toString());
-
     return RefreshIndicator(
         child: Column(
       children: [
