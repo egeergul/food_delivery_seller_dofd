@@ -64,18 +64,13 @@ class AllOrdersController extends GetxController {
     _isLoading = true;
     update();
 
-    print("date is " + date.toString());
-
-    Response response =  await allOrdersRepo.markAsDelivered ( orderId, date);
+    Response response =  await allOrdersRepo.markAsDelivered ( date, orderId);
     ResponseModel responseModel;
     if(response.statusCode == 200) {
-      responseModel = ResponseModel(true, response.body);
+      responseModel = ResponseModel(true, response.body.toString());
     } else {
       responseModel = ResponseModel(false, response.statusText!);
     }
-
-
-
 
     _isLoading= false;
     update();

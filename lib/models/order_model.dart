@@ -49,7 +49,7 @@ class OrderModel {
   String? otp;//bu ne la
   String? pending;
   bool? pickedUp;
-  bool? delivered;
+  String? delivered;
   bool? canceled;
 
   OrderModel({

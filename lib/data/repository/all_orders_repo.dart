@@ -12,8 +12,8 @@ class AllOrdersRepo extends GetxService {
   }
 
 
-  Future<Response> markAsDelivered( String orderId,DateTime date) async {
-    //TODO
-    return await  apiClient.patchData(AppConstants.ALL_ORDERS_UPDATE + "/${orderId}", {"delivered": date});
+  Future<Response> markAsDelivered( DateTime date,String orderId) async {
+    Response r =  await  apiClient.patchData(AppConstants.ALL_ORDERS_UPDATE, {"delivered": date.toString(), "id": orderId});
+    return r;
   }
 }

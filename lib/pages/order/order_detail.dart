@@ -37,7 +37,6 @@ class OrderDetail extends StatelessWidget {
         if (status.isSuccess) {
           Get.toNamed(RouteHelper.getInitial());
         } else {
-          print("else girdi");
           showCustomSnackBar(status.message);
         }
       });
@@ -143,8 +142,10 @@ class OrderDetail extends StatelessWidget {
                     SizedBox(height: Dimensions.height20),
                     GestureDetector(
                       onTap: () {
-                        _markAsDelivered(orderController);
-                        //popularProduct.addItem(product);
+                        product.delivered == null ?
+                        _markAsDelivered(orderController):
+                        showCustomSnackBar("This order is already delivered!");
+
                       },
                       child: Container(
                         width: double.infinity,
@@ -155,7 +156,7 @@ class OrderDetail extends StatelessWidget {
                             left: Dimensions.width20),
                         child: Center(
                           child: BigText(
-                            text: "Mark as delivered",
+                            text: product.delivered == null ?"Mark as delivered": "Already delivered",
                             color: Colors.white,
                           ),
                         ),

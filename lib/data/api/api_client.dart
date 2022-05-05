@@ -51,14 +51,11 @@ class ApiClient extends GetConnect implements GetxService {
   Future<Response> patchData(String uri, dynamic body) async {
     try{
       Response response = await patch(uri, body ,headers: _mainHeaders);
-      print(response.body.toString());
       return response;
     } catch(e) {
       print(e.toString());
       return Response(statusCode: 1, statusText:  e.toString());
     }
-    return Response(statusCode: 1, statusText:  "e");
-
 
   }
 
