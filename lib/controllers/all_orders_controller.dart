@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:food_delivery/data/repository/all_orders_repo.dart';
+import 'package:food_delivery/models/order_detail_model.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:get/get.dart';
 import '../data/repository/recommended_food_repo.dart';
@@ -12,7 +15,6 @@ class AllOrdersController extends GetxController {
   AllOrdersController ({required this.allOrdersRepo});
 
   List<dynamic> _allOrdersList = [];
-
   List<dynamic> get allOrdersList => _allOrdersList;
 
   bool _isLoaded = false;
@@ -20,6 +22,11 @@ class AllOrdersController extends GetxController {
 
   bool get isLoaded => _isLoaded;
   bool  get isLoading => _isLoading;
+
+  List<dynamic> _orderDetailsList = [];
+  List<dynamic> get orderDetailsList => _orderDetailsList;
+  bool _isDetailsLoaded = false;
+  bool get isDetailsLoaded => _isDetailsLoaded;
 
   Future<void> getAllOrdersList() async {
     Response response = await allOrdersRepo.getAllOrdersList();
@@ -35,29 +42,6 @@ class AllOrdersController extends GetxController {
     }
   }
 
-  /*Future<ResponseModel> login (String email, String password) async {
-
-    _isLoading = true;
-    update();
-    Response response =  await authRepo.login(email, password);
-    ResponseModel responseModel;
-    if(response.statusCode == 200) {
-      //print("Backend token ");
-
-      authRepo.saveUserToken(response.body["token"]);
-      print("My token is " + response.body["token"]);
-
-      //print(response.body["token"].toString());
-      responseModel = ResponseModel(true, response.body["token"]);
-    } else {
-      //print("BACKENDDEN RESPONSE GELMEDI");
-      //print(response.statusCode);
-      responseModel = ResponseModel(false, response.statusText!);
-    }
-    _isLoading= false;
-    update();
-    return responseModel;
-  }*/
 
   Future<ResponseModel>  markAsDelivered (String orderId, DateTime date)  async{
 
@@ -76,5 +60,26 @@ class AllOrdersController extends GetxController {
     update();
     return responseModel;
   }
+
+  Future<void> getOrderDetail (int orderId) async{
+
+    print("getOrderDetail e geldi: " + orderId.toString());
+
+
+    Response response =  await allOrdersRepo.getOrderDetail (orderId);
+    if(response.statusCode == 200) {
+      _orderDetailsList = [];
+      _orderDetailsList.addAll(OrderDetail.fromJson(response.body).orderDetails);
+      _isDetailsLoaded = true;
+      update();
+    }
+    else {
+      print("get order detail else");
+      print(response.body.toString());
+    }
+
+
+  }
+
 
 }

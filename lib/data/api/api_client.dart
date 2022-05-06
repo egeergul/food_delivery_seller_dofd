@@ -33,9 +33,11 @@ class ApiClient extends GetConnect implements GetxService {
       );
       return response;
     } catch (e) {
+      print("api daki get errore geldi");
       return Response(statusCode: 1, statusText: e.toString());
     }
   }
+
 
   Future<Response> postData(String uri, dynamic body) async {
     try{

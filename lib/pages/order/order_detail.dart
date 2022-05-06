@@ -20,19 +20,31 @@ import '../../base/show_custom_snackbar.dart';
 import '../../widgets/app_icon.dart';
 import '../../widgets/big_text.dart';
 
-class OrderDetail extends StatelessWidget {
+class OrderDetail extends StatefulWidget {
   final int pageId;
   final String page;
-
   const OrderDetail({Key? key, required this.pageId, required this.page})
       : super(key: key);
 
   @override
+  _OrderDetailState createState() => _OrderDetailState(pageId , page);
+}
+class _OrderDetailState extends State<OrderDetail> {
+
+  final int pageId;
+  final String page;
+  _OrderDetailState(this.pageId, this.page);
+
+
+
+
+  @override
   Widget build(BuildContext context) {
+
     var product = Get.find<AllOrdersController>().allOrdersList[pageId];
+    //Get.find<AllOrdersController>().getOrderDetail(product.id);
 
     void _markAsDelivered(AllOrdersController ordersController) {
-
       ordersController.markAsDelivered( product.id.toString(),DateTime.now()).then((status){
         if (status.isSuccess) {
           Get.toNamed(RouteHelper.getInitial());
@@ -40,16 +52,6 @@ class OrderDetail extends StatelessWidget {
           showCustomSnackBar(status.message);
         }
       });
-
-        /*ordersController.login(email, password).then((status) {
-          if (status.isSuccess) {
-            Get.toNamed(RouteHelper.getInitial());
-          } else {
-            print("else girdi");
-            showCustomSnackBar(status.message);
-          }
-        }*/
-
     }
 
       return  Scaffold(
@@ -135,7 +137,24 @@ class OrderDetail extends StatelessWidget {
 
                     Container(
                       height: Dimensions.screenHeight/3.4,
-                      child: BigText(text:"Whate ver is in the order" ),
+                      child: Text("todo"),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                       color: Colors.red,
                     ),
 
