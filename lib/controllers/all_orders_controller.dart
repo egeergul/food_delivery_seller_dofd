@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:food_delivery/data/repository/all_orders_repo.dart';
 import 'package:food_delivery/models/order_detail_model.dart';
 import 'package:food_delivery/utils/app_constants.dart';
@@ -22,11 +21,6 @@ class AllOrdersController extends GetxController {
 
   bool get isLoaded => _isLoaded;
   bool  get isLoading => _isLoading;
-
-  List<dynamic> _orderDetailsList = [];
-  List<dynamic> get orderDetailsList => _orderDetailsList;
-  bool _isDetailsLoaded = false;
-  bool get isDetailsLoaded => _isDetailsLoaded;
 
   Future<void> getAllOrdersList() async {
     Response response = await allOrdersRepo.getAllOrdersList();
@@ -60,30 +54,5 @@ class AllOrdersController extends GetxController {
     update();
     return responseModel;
   }
-
-  Future<List> getOrderDetail (int orderId) async{
-
-    print("getOrderDetail e geldi: " + orderId.toString());
-    var detailsList = [];
-
-    Response response =  await allOrdersRepo.getOrderDetail (orderId);
-    if(response.statusCode == 200) {
-      //_orderDetailsList = [];
-      //_orderDetailsList.addAll(OrderDetail.fromJson(response.body).orderDetails);
-
-      detailsList.addAll(OrderDetail.fromJson(response.body).orderDetails);
-
-      print(_orderDetailsList.runtimeType.toString());
-      _isDetailsLoaded = true;
-      update();
-    }
-    else {
-      print("get order detail else");
-      print(response.body.toString());
-    }
-    return detailsList ;
-
-  }
-
 
 }

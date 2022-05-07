@@ -24,9 +24,6 @@ class OrderDetailController extends GetxController {
     if(response.statusCode == 200) {
       _orderDetailsList = [];
       _orderDetailsList.addAll(OrderDetail.fromJson(response.body).orderDetails);
-      print("SİZE İS " + _orderDetailsList.length.toString());
-
-
       _isDetailsLoaded = true;
       update();
 

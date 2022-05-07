@@ -119,9 +119,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         // list of food and images
         GetBuilder<RecommendedProductController>(builder: (recommendedProduct) {
           return recommendedProduct.isLoaded
-              ? Expanded(
-                child: SingleChildScrollView(
-                  child: ListView.builder(
+              ?  ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: recommendedProduct.recommendedProductList.length,
@@ -221,9 +219,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             ),
                           ),
                         );
-                      }),
-                ),
-              )
+                      })
+
               : CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
