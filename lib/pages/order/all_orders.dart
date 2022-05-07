@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/order_detail_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
@@ -27,6 +28,11 @@ class AllOrders extends StatefulWidget {
 class _AllOrdersState extends State<AllOrders> {
   Future<void> _loadResources() async {
     await Get.find<AllOrdersController>().getAllOrdersList();
+  }
+
+  Future <void> _loadDetails(int orderId, int index) async {
+    await Get.find<OrderDetailController>().getOrderDetail(orderId);
+    Get.toNamed(RouteHelper.getOrder(index , "home"));
   }
 
   @override
@@ -72,7 +78,10 @@ class _AllOrdersState extends State<AllOrders> {
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(RouteHelper.getOrder(index , "home"));
+                                  _loadDetails(allOrders
+                                      .allOrdersList[index]
+                                      .id, index);
+
                                 },
                                 child: Container(
                                   margin: EdgeInsets.only(
@@ -86,6 +95,16 @@ class _AllOrdersState extends State<AllOrders> {
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(Dimensions.radius20),
                                         ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.5),
+                                            spreadRadius: 2,
+                                            blurRadius: 5,
+                                            offset: Offset(0, 7), // changes position of shadow
+                                          ),
+                                        ],
+
+
                                         color: Colors.white,
                                       ),
                                       child: Padding(

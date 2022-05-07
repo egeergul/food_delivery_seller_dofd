@@ -61,15 +61,19 @@ class AllOrdersController extends GetxController {
     return responseModel;
   }
 
-  Future<void> getOrderDetail (int orderId) async{
+  Future<List> getOrderDetail (int orderId) async{
 
     print("getOrderDetail e geldi: " + orderId.toString());
-
+    var detailsList = [];
 
     Response response =  await allOrdersRepo.getOrderDetail (orderId);
     if(response.statusCode == 200) {
-      _orderDetailsList = [];
-      _orderDetailsList.addAll(OrderDetail.fromJson(response.body).orderDetails);
+      //_orderDetailsList = [];
+      //_orderDetailsList.addAll(OrderDetail.fromJson(response.body).orderDetails);
+
+      detailsList.addAll(OrderDetail.fromJson(response.body).orderDetails);
+
+      print(_orderDetailsList.runtimeType.toString());
       _isDetailsLoaded = true;
       update();
     }
@@ -77,7 +81,7 @@ class AllOrdersController extends GetxController {
       print("get order detail else");
       print(response.body.toString());
     }
-
+    return detailsList ;
 
   }
 
