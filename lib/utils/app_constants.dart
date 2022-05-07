@@ -7,8 +7,13 @@ class AppConstants {
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   static const String UPLOAD_URL = "/uploads/";
 
+  // orders
   static const String ALL_ORDERS_URI = "/api/v1/orders/all";
-  static const String ALL_ORDERS_UPDATE = "/api/v1/orders/update";
+  static const String ALL_ORDERS_MARK_AS_DELIVERED = "/api/v1/orders/mark-as-delivered";
+
+  // order details
+  static const String ORDER_DETAIL = "/api/v1/orders/detail";
+
 
   // user and auth endpoints
   static const String REGISTERATION_URI = "/api/v1/auth/register";
