@@ -30,7 +30,17 @@ class AllOrdersController extends GetxController {
 
       List<dynamic> _reversedAllOrdersList = [];
       _reversedAllOrdersList = _allOrdersList.reversed.toList();
-      _allOrdersList = _reversedAllOrdersList;
+
+      List<dynamic> _paidOrdersList = [];
+      _reversedAllOrdersList.forEach((order) {
+        if(order["payment_status"] == "paid"){
+          _paidOrdersList.add(order);
+        }
+      });
+
+      _allOrdersList = _paidOrdersList;
+
+
 
       _isLoaded = true;
       update();

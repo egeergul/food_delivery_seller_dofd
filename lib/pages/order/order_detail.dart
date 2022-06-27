@@ -113,6 +113,17 @@ class _OrderDetailState extends State<OrderDetail> {
                                       children: [
                                         BigText(
                                           size: Dimensions.font16 * 2,
+                                          text: "Payment Method",
+                                          color: AppColors.mainColor,
+                                        ),
+                                        BigText(
+                                          text: product["payment_method"] == "door"? "Will be paid at door" : "Paid with paypal",
+                                        ),
+                                        SizedBox(height: Dimensions.height15),
+
+
+                                        BigText(
+                                          size: Dimensions.font16 * 2,
                                           text: "Contact Details",
                                           color: AppColors.mainColor,
                                         ),
