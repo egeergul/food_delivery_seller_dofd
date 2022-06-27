@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/order_detail_controller.dart';
+import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
@@ -17,7 +20,6 @@ import '../../widgets/icon_and_text_widget.dart';
 import '../../widgets/small_text.dart';
 import '../home/food_page_body.dart';
 
-
 class AllOrders extends StatefulWidget {
   const AllOrders({Key? key}) : super(key: key);
 
@@ -30,13 +32,18 @@ class _AllOrdersState extends State<AllOrders> {
     await Get.find<AllOrdersController>().getAllOrdersList();
   }
 
-  Future <void> _loadDetails(int orderId, int index) async {
+  Future<void> _loadDetails(int orderId, int index) async {
     await Get.find<OrderDetailController>().getOrderDetail(orderId);
-    Get.toNamed(RouteHelper.getOrder(index , "home"));
+    Get.toNamed(RouteHelper.getOrder(index, "home"));
+
   }
 
   @override
   Widget build(BuildContext context) {
+    //Bu kısım her sayfa yeniden yapıldığında refreshliyor
+    setState(() {
+      _loadResources();
+    });
     return RefreshIndicator(
         child: Column(
           children: [
@@ -66,29 +73,26 @@ class _AllOrdersState extends State<AllOrders> {
             ),
             Expanded(
                 child: SingleChildScrollView(
-                  child:  Column(
-                    children: [
-                      // recommended food
-                      GetBuilder<AllOrdersController>(builder: (allOrders) {
-                        return allOrders.isLoaded
-                            ? ListView.builder(
+              child: Column(
+                children: [
+                  // recommended food
+                  GetBuilder<AllOrdersController>(builder: (allOrders) {
+                    return allOrders.isLoaded
+                        ? ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: allOrders.allOrdersList.length,
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {
-                                  _loadDetails(allOrders
-                                      .allOrdersList[index]
-                                      .id, index);
-
+                                  _loadDetails(
+                                      allOrders.allOrdersList[index]['id'], index);
                                 },
                                 child: Container(
                                   margin: EdgeInsets.only(
                                       left: Dimensions.width20,
                                       right: Dimensions.width20,
                                       bottom: Dimensions.width10),
-
                                   child: Container(
                                       height: Dimensions.listViewTextContSize2,
                                       decoration: BoxDecoration(
@@ -100,11 +104,10 @@ class _AllOrdersState extends State<AllOrders> {
                                             color: Colors.grey.withOpacity(0.5),
                                             spreadRadius: 2,
                                             blurRadius: 5,
-                                            offset: Offset(0, 7), // changes position of shadow
+                                            offset: Offset(0,
+                                                7), // changes position of shadow
                                           ),
                                         ],
-
-
                                         color: Colors.white,
                                       ),
                                       child: Padding(
@@ -113,29 +116,42 @@ class _AllOrdersState extends State<AllOrders> {
                                             right: Dimensions.width10),
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
                                             Row(
                                               mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
-                                                BigText(
-                                                    text: allOrders
-                                                        .allOrdersList[index]
-                                                        .delivered ==
+                                                Row(
+                                                  children: [
+                                                    BigText(
+                                                        text: allOrders.allOrdersList[
+                                                        index]
+                                                        ['delivered'] ==
+                                                            null
+                                                            ? "Not delivered"
+                                                            : "Delivered"),
+                                                    allOrders.allOrdersList[
+                                                    index]
+                                                    ['delivered'] ==
                                                         null
-                                                        ? "Not delivered"
-                                                        : "Delivered"),
+                                                        ?AppIcon(icon: Icons.access_time, iconSize: Dimensions.iconSize24,)
+                                                    :AppIcon(icon: Icons.delivery_dining, iconSize: Dimensions.iconSize24,iconColor: Colors.white, backgroundColor: AppColors.mainColor,)
+                                                  ],
+                                                ),
                                                 SizedBox(
                                                   width: Dimensions.width10,
                                                 ),
                                                 BigText(
-                                                    overflow: TextOverflow.ellipsis,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                     size: Dimensions.font16,
                                                     text: formatDate(allOrders
                                                         .allOrdersList[index]
-                                                        .createdAt
+                                                            ['created_at']
                                                         .toString())),
                                               ],
                                             ),
@@ -146,22 +162,26 @@ class _AllOrdersState extends State<AllOrders> {
 
                                             // Contact name
                                             SmallText(
-                                                text: allOrders
-                                                    .allOrdersList[index]
-                                                    .deliveryAddress!
-                                                    .contactPersonName!
-                                                    .toString()),
+                                                text: "NAME: "+ allOrders
+                                                  .allOrdersList[index]
+                                                        ['delivery_address']
+                                                        ['contact_person_name']
+                                                    .toString(),
+                                                color: AppColors.mainColor,
+                                                    ),
                                             //contact address
                                             SmallText(
-                                                text: allOrders
+                                                text: "PHONE NO: "+allOrders
                                                     .allOrdersList[index]
-                                                    .deliveryAddress!
-                                                    .contactPersonNumber!
+                                                        ['delivery_address']
+                                                        ['contact_person_number']
                                                     .toString()),
                                             //address
                                             SmallText(
-                                                text: allOrders.allOrdersList[index]
-                                                    .deliveryAddress!.address!
+                                                text: "ADDRESS: " + allOrders
+                                                    .allOrdersList[index]
+                                                    ['delivery_address']
+                                                    ['address']
                                                     .toString()),
                                           ],
                                         ),
@@ -169,12 +189,12 @@ class _AllOrdersState extends State<AllOrders> {
                                 ),
                               );
                             })
-                            : CircularProgressIndicator(
-                          color: AppColors.mainColor,
-                        );
-                      }),
-                    ],
-                  ),
+                        : CircularProgressIndicator(
+                            color: AppColors.mainColor,
+                          );
+                  }),
+                ],
+              ),
             ))
           ],
         ),
@@ -183,9 +203,11 @@ class _AllOrdersState extends State<AllOrders> {
 
   String formatDate(String date) {
     String formattedDate = "";
-    if (date != null){
-      formattedDate = DateFormat( 'kk:mm dd/MM/yyyy').format(DateTime.parse(date));
+    if (date != null) {
+      formattedDate =
+          DateFormat('kk:mm dd/MM/yyyy').format(DateTime.parse(date));
     }
     return formattedDate;
   }
 }
+

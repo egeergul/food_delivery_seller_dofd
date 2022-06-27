@@ -21,5 +21,10 @@ class AllOrdersRepo extends GetxService {
     return r;
   }
 
+  Future<Response> getProductDetail( int productId) async {
+    Response r =  await  apiClient.getData('${AppConstants.PRODUCT_DETAIL}/${productId}' );
+    return r;
+  }
+
 
 }

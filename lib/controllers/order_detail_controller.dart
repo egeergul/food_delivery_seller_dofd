@@ -24,6 +24,30 @@ class OrderDetailController extends GetxController {
     if(response.statusCode == 200) {
       _orderDetailsList = [];
       _orderDetailsList.addAll(OrderDetail.fromJson(response.body).orderDetails);
+      print("printing the list");
+      _isDetailsLoaded = true;
+      update();
+
+      for(int i = 0; i < _orderDetailsList.length; i++){
+        print(i.toString()+"th index ="+_orderDetailsList[i].foodDetails!.toString());
+      }
+
+    }
+    else {
+      print("get order detail else");
+      print(response.body.toString());
+    }
+
+
+  }
+
+
+  Future<void> getProductDetail (int productId) async{
+    Response response =  await orderDetailRepo.getProductDetail (productId);
+    if(response.statusCode == 200) {
+      _orderDetailsList = [];
+      _orderDetailsList.addAll(OrderDetail.fromJson(response.body).orderDetails);
+      print("printing the list");
       _isDetailsLoaded = true;
       update();
 

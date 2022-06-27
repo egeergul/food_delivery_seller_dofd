@@ -2,17 +2,19 @@ class AppConstants {
   static const String APP_NAME = "DBFoodSeller";
   static const int APP_VERSION = 1;
 
-  static const String BASE_URL = "http://127.0.0.1:8000";
+  static const String BASE_URL = "http://192.168.0.13:8000";
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   static const String UPLOAD_URL = "/uploads/";
 
   // orders
-  static const String ALL_ORDERS_URI = "/api/v1/orders/all";
-  static const String ALL_ORDERS_MARK_AS_DELIVERED = "/api/v1/orders/mark-as-delivered";
+  static const String ALL_ORDERS_URI = "/api/v1/customer/order/all";
+  static const String ALL_ORDERS_MARK_AS_DELIVERED = "/api/v1/customer/order/mark-as-delivered";
 
   // order details
-  static const String ORDER_DETAIL = "/api/v1/orders/detail";
+  static const String ORDER_DETAIL = "/api/v1/customer/order/detail";
+  //product detail
+  static const String PRODUCT_DETAIL = "/api/v1/products/find-product";
 
 
   // user and auth endpoints

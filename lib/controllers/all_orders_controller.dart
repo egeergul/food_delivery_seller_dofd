@@ -27,12 +27,27 @@ class AllOrdersController extends GetxController {
     if (response.statusCode == 200) {
       print( "got all the orders");
       _allOrdersList = [];
-      _allOrdersList.addAll(Order.fromJson(response.body).orders);
+      //_allOrdersList.addAll(OrderModel.fromJson(response.body));
+      //Map ourJson = jsonDecode(response.body.toString());
+      //print("ORDER LIST = " + response.body.toString());
+
+      response.body.forEach((order) {
+        //_allOrdersList.add(OrderModel.fromJson(order));
+        //OrderModel orderModel = OrderModel.fromJson(order);
+        //print("printing order model: " + order.toString());
+        _allOrdersList.add(order);
+      });
+
+
+      List<dynamic> _reversedAllOrdersList = [];
+      _reversedAllOrdersList = _allOrdersList.reversed.toList();
+      _allOrdersList = _reversedAllOrdersList;
+
       _isLoaded = true;
       update();
     } else {
       print("App base url is " + AppConstants.BASE_URL );
-      print("could not ge t all orders recommended ");
+      print("could not ge t all orders recommended " + response.statusCode.toString());
     }
   }
 
