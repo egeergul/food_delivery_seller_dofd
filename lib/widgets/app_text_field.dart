@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 import '../utils/dimensions.dart';
 
+
 class AppTextField extends StatelessWidget {
   final TextEditingController textController;
   final String hintText;
@@ -35,7 +36,7 @@ class AppTextField extends StatelessWidget {
                 color: Colors.grey.withOpacity(0.2))
           ]),
       child: TextField(
-        obscureText: isObscure?true:false,
+        obscureText: isObscure ? true : false,
         controller: textController,
         decoration: InputDecoration(
           hintText: hintText,

@@ -29,12 +29,11 @@ class _AllOrdersState extends State<AllOrders> {
   Future<void> _loadDetails(int orderId, int index) async {
     await Get.find<OrderDetailController>().getOrderDetail(orderId);
     Get.toNamed(RouteHelper.getOrder(index, "home"));
-
   }
 
   @override
   Widget build(BuildContext context) {
-    //Bu kısım her sayfa yeniden yapıldığında refreshliyor
+    //This part refreshes the page each time the page is re-created
     setState(() {
       _loadResources();
     });
@@ -80,7 +79,8 @@ class _AllOrdersState extends State<AllOrders> {
                               return GestureDetector(
                                 onTap: () {
                                   _loadDetails(
-                                      allOrders.allOrdersList[index]['id'], index);
+                                      allOrders.allOrdersList[index]['id'],
+                                      index);
                                 },
                                 child: Container(
                                   margin: EdgeInsets.only(
@@ -123,17 +123,32 @@ class _AllOrdersState extends State<AllOrders> {
                                                   children: [
                                                     BigText(
                                                         text: allOrders.allOrdersList[
-                                                        index]
-                                                        ['delivered'] ==
-                                                            null
+                                                                        index][
+                                                                    'delivered'] ==
+                                                                null
                                                             ? "Not delivered"
                                                             : "Delivered"),
                                                     allOrders.allOrdersList[
-                                                    index]
-                                                    ['delivered'] ==
-                                                        null
-                                                        ?AppIcon(icon: Icons.access_time, iconSize: Dimensions.iconSize24,)
-                                                    :AppIcon(icon: Icons.delivery_dining, iconSize: Dimensions.iconSize24,iconColor: Colors.white, backgroundColor: AppColors.mainColor,)
+                                                                    index]
+                                                                ['delivered'] ==
+                                                            null
+                                                        ? AppIcon(
+                                                            icon: Icons
+                                                                .access_time,
+                                                            iconSize: Dimensions
+                                                                .iconSize24,
+                                                          )
+                                                        : AppIcon(
+                                                            icon: Icons
+                                                                .delivery_dining,
+                                                            iconSize: Dimensions
+                                                                .iconSize24,
+                                                            iconColor:
+                                                                Colors.white,
+                                                            backgroundColor:
+                                                                AppColors
+                                                                    .mainColor,
+                                                          )
                                                   ],
                                                 ),
                                                 SizedBox(
@@ -156,27 +171,30 @@ class _AllOrdersState extends State<AllOrders> {
 
                                             // Contact name
                                             SmallText(
-                                                text: "NAME: "+ allOrders
-                                                  .allOrdersList[index]
-                                                        ['delivery_address']
-                                                        ['contact_person_name']
-                                                    .toString(),
-                                                color: AppColors.mainColor,
-                                                    ),
+                                              text: "NAME: " +
+                                                  allOrders.allOrdersList[index]
+                                                          ['delivery_address'][
+                                                          'contact_person_name']
+                                                      .toString(),
+                                              color: AppColors.mainColor,
+                                            ),
                                             //contact address
                                             SmallText(
-                                                text: "PHONE NO: "+allOrders
-                                                    .allOrdersList[index]
-                                                        ['delivery_address']
-                                                        ['contact_person_number']
-                                                    .toString()),
+                                                text: "PHONE NO: " +
+                                                    allOrders
+                                                        .allOrdersList[index]
+                                                            ['delivery_address']
+                                                            [
+                                                            'contact_person_number']
+                                                        .toString()),
                                             //address
                                             SmallText(
-                                                text: "ADDRESS: " + allOrders
-                                                    .allOrdersList[index]
-                                                    ['delivery_address']
-                                                    ['address']
-                                                    .toString()),
+                                                text: "ADDRESS: " +
+                                                    allOrders
+                                                        .allOrdersList[index]
+                                                            ['delivery_address']
+                                                            ['address']
+                                                        .toString()),
                                           ],
                                         ),
                                       )),
@@ -204,4 +222,3 @@ class _AllOrdersState extends State<AllOrders> {
     return formattedDate;
   }
 }
-

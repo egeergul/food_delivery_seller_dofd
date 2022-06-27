@@ -53,7 +53,6 @@ class SignUpPage extends StatelessWidget {
           if (status.isSuccess) {
             Get.toNamed(RouteHelper.getInitial());
           } else {
-            print("else girdi");
             showCustomSnackBar(status.message);
           }
         });
@@ -160,8 +159,6 @@ class SignUpPage extends StatelessWidget {
                         height: Dimensions.screenHeight * 0.05,
                       ),
                       // sign up options
-
-
                     ],
                   ),
                 )

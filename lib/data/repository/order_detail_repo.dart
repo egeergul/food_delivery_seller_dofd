@@ -13,5 +13,4 @@ class OrderDetailRepo extends GetxService {
     return r;
   }
 
-
 }

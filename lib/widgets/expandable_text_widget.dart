@@ -13,6 +13,7 @@ class ExpandableTextWidget extends StatefulWidget {
   _ExpandableTextWidgetState createState() => _ExpandableTextWidgetState();
 }
 
+
 class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
   late String firstHalf;
   late String secondHalf;
@@ -61,7 +62,7 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
                       child: Row(
                         children: [
                           SmallText(
-                            height: 1.8 ,
+                            height: 1.8,
                             text: hiddenText ? "Show more" : "Show less ",
                             color: AppColors.mainColor,
                           ),

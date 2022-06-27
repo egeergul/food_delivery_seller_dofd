@@ -10,4 +10,5 @@ class UserRepo{
   Future<Response >getUserInfo() async{
     return await apiClient.getData(AppConstants.USER_INFO_URI);//await because we are talking with backend
   }
+
 }

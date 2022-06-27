@@ -13,21 +13,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  List pages =[
+  List pages = [
     AllOrders(),
-    //AccountPage( ),
+    AccountPage(),
   ];
 
   void onTapNav(int index) {
     setState(() {
       _selectedIndex = index;
     });
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[0],
+      body: pages[1],
     );
 
     /**
@@ -66,7 +66,5 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );*/
-
-
   }
 }

@@ -114,9 +114,7 @@ class LocationController extends GetxController implements GetxService {
     Response response = await locationRepo.getAddressFromGeocode(latLng);
     if (response.body["status"] == "OK") {
       _address = response.body["results"][0]['formatted_address'].toString();
-      //print("printing address" + _address);
     } else {
-      print("Error getting the google api " + response.body.toString());
     }
     update();
     return _address;
@@ -154,17 +152,12 @@ class LocationController extends GetxController implements GetxService {
     ResponseModel responseModel;
     if (response.statusCode == 200) {
       // means it is working
-      print("after await0");
 
       await getAddressList();
-      print("after await1");
       String message = response.body["message"];
       responseModel = ResponseModel(true, message);
-      print("after await2");
       await saveUserAddress(addressModel);
-      print("after await3");
     } else {
-      print("count not save the address");
       responseModel = ResponseModel(false, response.statusText!);
     }
     update();
@@ -174,16 +167,13 @@ class LocationController extends GetxController implements GetxService {
   Future<void> getAddressList() async {
     Response response = await locationRepo.getAllAddress();
     if (response.statusCode == 200) {
-      print("adddding adresss");
       _addressList = [];
       _allAddressList = [];
       response.body.forEach((address) {
-        print("aADDINNGGG");
         _addressList.add(AddressModel.fromJson(address));
         _allAddressList.add(AddressModel.fromJson(address));
       });
     } else {
-      print("adddding adresss failed");
       _addressList = [];
       _allAddressList = [];
     }
@@ -221,12 +211,11 @@ class LocationController extends GetxController implements GetxService {
       _isLoading = true;
     }
     update();
-    Response response  = await locationRepo.getZone(lat, lng);
-    if(response.statusCode==200){
+    Response response = await locationRepo.getZone(lat, lng);
+    if (response.statusCode == 200) {
       _inZone = true;
       _responseModel = ResponseModel(true, response.body["zone_id"].toString());
-    }
-    else{
+    } else {
       _inZone = false;
       _responseModel = ResponseModel(true, response.statusText!);
     }
@@ -235,10 +224,7 @@ class LocationController extends GetxController implements GetxService {
     } else {
       _isLoading = false;
     }
-    /*
-    for debugging
-     */
-    //print(response.statusCode);//200 //404 //500 //403(Permission problem)
+
     update();
 
     return _responseModel;

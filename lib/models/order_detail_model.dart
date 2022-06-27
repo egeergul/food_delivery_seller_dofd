@@ -91,6 +91,5 @@ class OrderDetailModel {
     res = res + " foodDetails: " + this.foodDetails.toString();
 
     return res;
-
   }
 }

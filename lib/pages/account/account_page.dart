@@ -24,7 +24,6 @@ class AccountPage extends StatelessWidget {
     bool _userLoggedIn = Get.find<AuthController>().userLoggedIn();
     if (_userLoggedIn) {
       Get.find<UserController>().getUserInfo();
-      print("User has logged in");
     }
     return Scaffold(
         backgroundColor: Colors.white,
@@ -108,68 +107,7 @@ class AccountPage extends StatelessWidget {
                                   SizedBox(
                                     height: Dimensions.height20,
                                   ),
-                                  //address
-                                  GetBuilder<LocationController>(
-                                      builder: (locationController) {
-                                    if (_userLoggedIn &&
-                                        locationController
-                                            .addressList.isEmpty) {
-                                      return GestureDetector(
-                                        onTap: (){
-                                          //Get.offNamed(RouteHelper.getAddressPage());
-                                        },
-                                        child: AccountWidget(
-                                          appIcon: AppIcon(
-                                            icon: Icons.location_on,
-                                            backgroundColor: AppColors.mainColor,
-                                            iconColor: Colors.white,
-                                            size: Dimensions.height10 * 5,
-                                            iconSize: Dimensions.height10 * 5 / 2,
-                                          ),
-                                          bigText: BigText(
-                                            text: "Fill in your address",
-                                          ),
-                                        ),
-                                      );
-                                    }else{
-                                      return GestureDetector(
-                                        onTap: (){
-                                          //Get.offNamed(RouteHelper.getAddressPage());
-                                        },
-                                        child: AccountWidget(
-                                          appIcon: AppIcon(
-                                            icon: Icons.location_on,
-                                            backgroundColor: AppColors.mainColor,
-                                            iconColor: Colors.white,
-                                            size: Dimensions.height10 * 5,
-                                            iconSize: Dimensions.height10 * 5 / 2,
-                                          ),
-                                          bigText: BigText(
-                                            text: "Your address",
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  }),
-                                  SizedBox(
-                                    height: Dimensions.height20,
-                                  ),
-                                  //message
-                                  AccountWidget(
-                                    appIcon: AppIcon(
-                                      icon: Icons.message_outlined,
-                                      backgroundColor: Colors.redAccent,
-                                      iconColor: Colors.white,
-                                      size: Dimensions.height10 * 5,
-                                      iconSize: Dimensions.height10 * 5 / 2,
-                                    ),
-                                    bigText: BigText(
-                                      text: "Messages",
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: Dimensions.height20,
-                                  ),
+
                                   GestureDetector(
                                     onTap: () {
                                       if (Get.find<AuthController>()
@@ -179,15 +117,13 @@ class AccountPage extends StatelessWidget {
                                         Get.find<CartController>().clear();
                                         Get.find<CartController>()
                                             .clearCartHistory();
-                                        Get.find<LocationController>().clearAddressList();
-                                        print("inside if");
-
+                                        Get.find<LocationController>()
+                                            .clearAddressList();
                                         Get.offNamed(
                                             RouteHelper.getSignInPage());
                                       } else {
                                         Get.offNamed(
                                             RouteHelper.getSignInPage());
-                                        print("you logged out");
                                       }
                                     },
                                     child: AccountWidget(

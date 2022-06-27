@@ -13,23 +13,25 @@ class RouteHelper {
   static const String orderPage = "/order-page";
   static const String signIn = "/sign-in";
 
-
   static String getInitial() => "$initial";
+
   static String getSplashPage() => "$splashPage";
+
   static String getSignInPage() => "$signIn";
+
   static String getOrder(int pageId, String page) =>
       "$orderPage?pageId=$pageId&page=$page";
 
   static List<GetPage> routes = [
-
-    GetPage(name: splashPage, page: ()=>SplashScreen()),
-    GetPage(name: initial, page: (){
-      return HomePage();
-    }, transition: Transition.fade),
-    GetPage(name: signIn, page: () => SignInPage(), transition: Transition.fade),
-
-
-
+    GetPage(name: splashPage, page: () => SplashScreen()),
+    GetPage(
+        name: initial,
+        page: () {
+          return HomePage();
+        },
+        transition: Transition.fade),
+    GetPage(
+        name: signIn, page: () => SignInPage(), transition: Transition.fade),
     GetPage(
       name: orderPage,
       page: () {
@@ -38,8 +40,6 @@ class RouteHelper {
         return OrderDetail(pageId: int.parse(pageId!), page: page!);
       },
     ),
-
-
   ];
 }
 
