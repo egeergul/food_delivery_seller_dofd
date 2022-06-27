@@ -3,16 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dofd_driver_panel/controllers/all_orders_controller.dart';
-import 'package:dofd_driver_panel/controllers/cart_controller.dart';
 import 'package:dofd_driver_panel/controllers/order_detail_controller.dart';
-import 'package:dofd_driver_panel/controllers/popular%20_product_controller.dart';
-import 'package:dofd_driver_panel/controllers/recommended_food_controller.dart';
-import 'package:dofd_driver_panel/pages/cart/cart_page.dart';
 import 'package:dofd_driver_panel/routes/route_helper.dart';
-import 'package:dofd_driver_panel/utils/app_constants.dart';
 import 'package:dofd_driver_panel/utils/colors.dart';
 import 'package:dofd_driver_panel/utils/dimensions.dart';
-import 'package:dofd_driver_panel/widgets/expandable_text_widget.dart';
 import 'package:dofd_driver_panel/widgets/small_text.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -89,13 +83,10 @@ class _OrderDetailState extends State<OrderDetail> {
                         children: [
                           GestureDetector(
                               onTap: () {
-                                if (page == "cartpage") {
-                                  Get.toNamed(
-                                      RouteHelper.getCartPage());
-                                } else {
+
                                   Get.toNamed(
                                       RouteHelper.getInitial());
-                                }
+
                               },
                               child: AppIcon(icon: Icons.clear)),
                           BigText(

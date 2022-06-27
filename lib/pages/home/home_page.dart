@@ -1,13 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dofd_driver_panel/pages/account/account_page.dart';
-import 'package:dofd_driver_panel/pages/auth/sign_up_page.dart';
-import 'package:dofd_driver_panel/pages/cart/cart_history.dart';
-import 'package:dofd_driver_panel/pages/home/main_food_page.dart';
 import 'package:dofd_driver_panel/pages/order/all_orders.dart';
 import 'package:dofd_driver_panel/utils/colors.dart';
 
-import '../auth/sing_in_page.dart';
+import '../account/account_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List pages =[
     AllOrders(),
-    AccountPage( ),
+    //AccountPage( ),
   ];
 
   void onTapNav(int index) {
@@ -32,6 +28,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: pages[0],
+    );
+
+    /**
+     * To be uncommented if a sign up procedure is wanted
+     * In that case, remember to update backend's following methods in api.php
+     * so that they would require authentiacation first
+     * Remember to uncomment List pages = [ AccountPage()]
+     *
+     * Route::get('all', 'OrderController@get_all_order_list');
+     * Route::patch('mark-as-delivered', 'OrderController@markAsDelivered');
+     * Route::patch('mark-as-pay-on-door', 'OrderController@markAsPayOnDoor');
+     * Route::get('detail/{id}', 'OrderController@getOrderDetail');
+     **/
+
+    /*return Scaffold(
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: AppColors.mainColor,
@@ -54,6 +66,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-    );
+    );*/
+
+
+
   }
 }

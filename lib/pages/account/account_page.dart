@@ -116,7 +116,7 @@ class AccountPage extends StatelessWidget {
                                             .addressList.isEmpty) {
                                       return GestureDetector(
                                         onTap: (){
-                                          Get.offNamed(RouteHelper.getAddressPage());
+                                          //Get.offNamed(RouteHelper.getAddressPage());
                                         },
                                         child: AccountWidget(
                                           appIcon: AppIcon(
@@ -134,7 +134,7 @@ class AccountPage extends StatelessWidget {
                                     }else{
                                       return GestureDetector(
                                         onTap: (){
-                                          Get.offNamed(RouteHelper.getAddressPage());
+                                          //Get.offNamed(RouteHelper.getAddressPage());
                                         },
                                         child: AccountWidget(
                                           appIcon: AppIcon(
