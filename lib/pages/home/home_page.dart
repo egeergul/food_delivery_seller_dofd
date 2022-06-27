@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List pages = [
     AllOrders(),
-    AccountPage(),
+    //AccountPage(),
   ];
 
   void onTapNav(int index) {
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[1],
+      body: pages[0],
     );
 
     /**
