@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/base/custom_loader.dart';
-import 'package:food_delivery/base/show_custom_snackbar.dart';
-import 'package:food_delivery/controllers/auth_controller.dart';
-import 'package:food_delivery/models/signup_body_model.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/app_text_field.dart';
-import 'package:food_delivery/widgets/big_text.dart';
+import 'package:dofd_driver_panel/base/custom_loader.dart';
+import 'package:dofd_driver_panel/base/show_custom_snackbar.dart';
+import 'package:dofd_driver_panel/controllers/auth_controller.dart';
+import 'package:dofd_driver_panel/models/signup_body_model.dart';
+import 'package:dofd_driver_panel/routes/route_helper.dart';
+import 'package:dofd_driver_panel/utils/colors.dart';
+import 'package:dofd_driver_panel/utils/dimensions.dart';
+import 'package:dofd_driver_panel/widgets/app_text_field.dart';
+import 'package:dofd_driver_panel/widgets/big_text.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -160,24 +160,8 @@ class SignUpPage extends StatelessWidget {
                         height: Dimensions.screenHeight * 0.05,
                       ),
                       // sign up options
-                      RichText(
-                          text: TextSpan(
-                              text: "Sig up using the following methods",
-                              style: TextStyle(
-                                  color: Colors.grey[500],
-                                  fontSize: Dimensions.font16))),
-                      Wrap(
-                        children: List.generate(
-                            3,
-                            (index) => Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: CircleAvatar(
-                                    radius: Dimensions.radius30,
-                                    backgroundImage: AssetImage(
-                                        "assets/image/" + signUpImages[index]),
-                                  ),
-                                )),
-                      )
+
+
                     ],
                   ),
                 )

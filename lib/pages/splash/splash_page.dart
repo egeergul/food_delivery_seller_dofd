@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/controllers/all_orders_controller.dart';
-import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/dimensions.dart';
+import 'package:dofd_driver_panel/controllers/all_orders_controller.dart';
+import 'package:dofd_driver_panel/utils/colors.dart';
+import 'package:dofd_driver_panel/utils/dimensions.dart';
 import 'package:get/get.dart';
 import '../../controllers/popular _product_controller.dart';
 import '../../controllers/recommended_food_controller.dart';

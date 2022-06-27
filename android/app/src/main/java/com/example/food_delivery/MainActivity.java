@@ -1,4 +1,4 @@
-package com.example.food_delivery;
+package com.example.dofd_driver_panel;
 
 import io.flutter.embedding.android.FlutterActivity;
 

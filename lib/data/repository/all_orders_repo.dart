@@ -1,5 +1,5 @@
-import 'package:food_delivery/data/api/api_client.dart';
-import 'package:food_delivery/utils/app_constants.dart';
+import 'package:dofd_driver_panel/data/api/api_client.dart';
+import 'package:dofd_driver_panel/utils/app_constants.dart';
 import 'package:get/get.dart';
 
 class AllOrdersRepo extends GetxService {
@@ -13,6 +13,7 @@ class AllOrdersRepo extends GetxService {
 
   Future<Response> markAsDelivered( DateTime date,String orderId) async {
     Response r =  await  apiClient.patchData(AppConstants.ALL_ORDERS_MARK_AS_DELIVERED, {"delivered": date.toString(), "id": orderId});
+    print("All orders repo, response for mark as delivered" + r.bodyString.toString());
     return r;
   }
 

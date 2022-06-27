@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:food_delivery/data/repository/all_orders_repo.dart';
-import 'package:food_delivery/models/order_detail_model.dart';
-import 'package:food_delivery/utils/app_constants.dart';
+import 'package:dofd_driver_panel/data/repository/all_orders_repo.dart';
+import 'package:dofd_driver_panel/models/order_detail_model.dart';
+import 'package:dofd_driver_panel/utils/app_constants.dart';
 import 'package:get/get.dart';
 import '../data/repository/recommended_food_repo.dart';
 import '../models/order_model.dart';

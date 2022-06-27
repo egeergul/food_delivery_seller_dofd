@@ -1,10 +1,10 @@
-import 'package:food_delivery/pages/address/add_address_page.dart';
-import 'package:food_delivery/pages/address/pick_address_map.dart';
-import 'package:food_delivery/pages/auth/sing_in_page.dart';
-import 'package:food_delivery/pages/food/popular_food_detail.dart';
-import 'package:food_delivery/pages/home/main_food_page.dart';
-import 'package:food_delivery/pages/food/recommended_food_detail.dart';
-import 'package:food_delivery/pages/splash/splash_page.dart';
+import 'package:dofd_driver_panel/pages/address/add_address_page.dart';
+import 'package:dofd_driver_panel/pages/address/pick_address_map.dart';
+import 'package:dofd_driver_panel/pages/auth/sing_in_page.dart';
+import 'package:dofd_driver_panel/pages/food/popular_food_detail.dart';
+import 'package:dofd_driver_panel/pages/home/main_food_page.dart';
+import 'package:dofd_driver_panel/pages/food/recommended_food_detail.dart';
+import 'package:dofd_driver_panel/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -26,7 +26,7 @@ class RouteHelper {
   static const String pickAddressMap ="/pick-address";
 
 
-  static String getInitial() => "$initial ";
+  static String getInitial() => "$initial";
   static String getSplashPage() => "$splashPage";
   static String getPopularFood(int pageId, String  page ) => "$popularFood?pageId=$pageId&page=$page";
   static String getCartPage() => "$cartPage";

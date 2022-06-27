@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/controllers/order_detail_controller.dart';
-import 'package:food_delivery/widgets/app_icon.dart';
+import 'package:dofd_driver_panel/controllers/order_detail_controller.dart';
+import 'package:dofd_driver_panel/widgets/app_icon.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';

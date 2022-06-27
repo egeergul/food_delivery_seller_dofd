@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/pages/account/account_page.dart';
-import 'package:food_delivery/pages/auth/sign_up_page.dart';
-import 'package:food_delivery/pages/cart/cart_history.dart';
-import 'package:food_delivery/pages/home/main_food_page.dart';
-import 'package:food_delivery/pages/order/all_orders.dart';
-import 'package:food_delivery/utils/colors.dart';
+import 'package:dofd_driver_panel/pages/account/account_page.dart';
+import 'package:dofd_driver_panel/pages/auth/sign_up_page.dart';
+import 'package:dofd_driver_panel/pages/cart/cart_history.dart';
+import 'package:dofd_driver_panel/pages/home/main_food_page.dart';
+import 'package:dofd_driver_panel/pages/order/all_orders.dart';
+import 'package:dofd_driver_panel/utils/colors.dart';
 
 import '../auth/sing_in_page.dart';
 
@@ -20,10 +20,6 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List pages =[
     AllOrders(),
-    MainFoodPage(),
-
-    //SignInPage(),
-    CartHistory(),
     AccountPage( ),
   ];
 
@@ -51,15 +47,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.home_outlined,),
             label: "all orders",
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.archive,),
-              label: "archinve",
-          ),
 
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart,),
-            label: "cart",
-          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person,),
             label: "me",
