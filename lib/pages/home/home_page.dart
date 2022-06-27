@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dofd_driver_panel/pages/order/all_orders.dart';
 import 'package:dofd_driver_panel/utils/colors.dart';
-
 import '../account/account_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -67,7 +66,6 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );*/
-
 
 
   }
